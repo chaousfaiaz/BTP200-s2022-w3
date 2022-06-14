@@ -1,68 +1,39 @@
+/*
+***************************
+                          Workshop - #3 (2)
+Full Name  : MD Faiaz
+Student ID#: 164899213
+Email      : mfaiaz0@myseneca.ca
+Section    : NAA
 
+Authenticity Declaration:
+I declare this submission is the result of my own work and has not been
+shared with any other student or 3rd party content provider. This submitted
+piece of work is entirely of my own creation.
+***************************
+*/
 
 #include <iostream>
-#include "Army.h"
-using namespace std;
+#include "BarChart.h"
 using namespace sdds;
+using namespace std;
 
-int main() {
 
-        Army armies[6]{};
+int main() 
+{
 
-        armies[0].createArmy("Atlantis", 500.5, 1000);
-        armies[1].createArmy("", 100.0, 100);
-        armies[2].createArmy("Ambrosia", 215.0, 520);
-        armies[3].createArmy("United States of Auradon", 220.5, 751);
-        armies[4].createArmy("Azmenistan", 250.0, 750);
-        armies[5].createArmy(nullptr, 250.5, 750);
+   BarChart bc;
+   bc.init("How much students like this lab.", 5, '=');
+   bc.add("Best Lab Ever", 2);
+   bc.add("Good Lab", 10);
+   bc.add("Doable Lab", 63);
+   cout << "Premature draw call:"<< endl; 
+   bc.draw(); // will not draw; it will print an error instead
+   bc.add("Bad Lab", 10);
+   bc.add("Worst Lab Ever", 5);
+   cout << "Proper draw call after all samples are entered:" << endl;
+   bc.draw();
+   bc.deallocate();
+   return 0;
 
-        //Test 1
-        cout << "----------------------------------------" << endl;
-        cout << "1. Testing the validation logic." << endl;
-        cout << "(only 4 armies should be valid (0,2,3,4) )" << endl;
-        cout << "----------------------------------------" << endl;
-        for (int i = 0; i < 6; i++)
-        {
-                cout << "armies[" << i << "]: "
-                        << (armies[i].isEmpty() ? "not valid" : "valid") << endl;
-        }
-        cout << "----------------------------------------" << endl << endl;
-        //Test 2
-        cout << "----------------------------------------" << endl;
-        cout << "2. Testing the display function." << endl;
-        cout << "----------------------------------------" << endl;
-        displayDetails(armies, 6);
-        cout << "----------------------------------------" << endl << endl;
-        // Test 3
-        cout << "----------------------------------------" << endl;
-        cout << "3. Testing the member functions without the update." << endl;
-        cout << "----------------------------------------" << endl;
-        Army backup;
-        backup.createArmy("Foreigners", 100, 100);
-        cout << backup.checkNationality()
-                << ','
-                << backup.checkCapacity()
-                << ','
-                << backup.checkPower() << endl;
-        cout << "----------------------------------------" << endl << endl;
-        // Test 4
-        cout << "----------------------------------------" << endl;
-        cout << "4. Testing the member functions with the update." << endl;
-        cout << "----------------------------------------" << endl;
-        backup.updateUnits(100);
-        cout << backup.checkNationality()
-                << ','
-                << backup.checkCapacity()
-                << ','
-                << backup.checkPower() << endl;
-        cout << "----------------------------------------" << endl << endl;
-        // Test 5
-        cout << "----------------------------------------" << endl;
-        cout << "5. Testing the battle function." << endl;
-        cout << "----------------------------------------" << endl;
-        battle(armies[0],armies[2]);
-        battle(armies[3], armies[4]);
-        displayDetails(armies, 6);
-        cout << "----------------------------------------" << endl << endl;
-        return 0;
 }
